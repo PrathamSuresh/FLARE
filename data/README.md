@@ -7,6 +7,8 @@
 **Study area:** Chamoli district, Uttarakhand
 **Bounding box:** 30.2–31.0 °N, 79.0–80.0 °E
 
+**Configuration:** All spatial and temporal parameters are defined in `ml/config.py`. Changing the region requires editing that file and re-running the fetch scripts — no code changes. Note that the SRTM DEM must be downloaded manually for a new region.
+
 All datasets are clipped to this bounding box. The pipeline is parameterised by bounding box, so re-running the scripts with different coordinates extends FLARE to any other hilly district.
 
 ---
@@ -40,12 +42,21 @@ All datasets are clipped to this bounding box. The pipeline is parameterised by 
 
 ---
 
-## [pending] soil moisture
+## chamoli_soil_moisture.csv
 
-**Source:** NASA SMAP (Soil Moisture Active Passive)
-**URL:** https://nsidc.org/data/smap
-**Purpose:** Satellite-derived substitute for the physical soil moisture sensors named in the problem statement. Saturated soil is a primary driver of flash flooding on steep terrain.
-**Status:** Not yet acquired
+**Source:** Copernicus ERA5-Land hourly reanalysis
+**Access:** `cdsapi` Python package (`pip install cdsapi netcdf4`), free CDS account required
+**URL:** https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land
+**Resolution:** ~9 km native, aggregated to 0.25° grid to match IMD rainfall
+**Period:** 2010–2021, sampled at 00:00 and 12:00 UTC, averaged to daily
+**Rows:** 87,660
+**Columns:** date, lat, lon, soil_moisture_l1 (0–7 cm), soil_moisture_l2 (7–28 cm)
+**Script:** `ml/fetch_soil_moisture.py`
+**Citation:** Muñoz Sabater, J. (2019): ERA5-Land hourly data from 1950 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). https://doi.org/10.24381/cds.e2161bac. Accessed 2026-09-03
+**Licence:** CC-BY
+**Notes:** Requests are issued one year at a time — CDS rejects multi-year requests for this area as exceeding cost limits. Already-downloaded years are skipped on re-run. Raw `.nc` files excluded from repo via `.gitignore`.
+
+**Why ERA5-Land and not NASA SMAP:** SMAP only became operational in 2015, which excludes the 2013 Kedarnath disaster — one of our two anchor labelling events. SMAP is also gridded at 36 km, coarser than our 25 km rainfall grid, which works against the hyper-local requirement. ERA5-Land covers 1950–present at ~9 km. It is a reanalysis product (model output constrained by observations) rather than a direct satellite measurement, which we note as a limitation.
 
 ---
 
