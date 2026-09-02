@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\prath\FLARE\ml\fetch_soil_moisture.py", line 47, in <module>
+    ds = xr.open_dataset(f)
+  File "C:\Users\prath\FLARE\venv\Lib\site-packages\xarray\backends\api.py", line 594, in open_dataset
+    engine = plugins.guess_engine(filename_or_obj)
+  File "C:\Users\prath\FLARE\venv\Lib\site-packages\xarray\backends\plugins.py", line 217, in guess_engine
+    raise ValueError(error_msg)
+ValueError: found the following matches with the input file in xarray's IO backends: ['netcdf4', 'h5netcdf']. But their dependencies may not be installed, see:
+https://docs.xarray.dev/en/stable/user-guide/io.html 
+https://docs.xarray.dev/en/stable/getting-started-guide/installing.html

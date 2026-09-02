@@ -1,4 +1,7 @@
 import traceback
+import sys, os
+sys.path.insert(0, os.path.dirname(__file__))
+from config import GRID_RES, out_path
 
 try:
     import rasterio
@@ -35,9 +38,9 @@ try:
 
     print(f"Raw pixels: {df.shape[0]}")
 
-    # snap to the 0.25 deg IMD rainfall grid
-    df['lat'] = (df['lat'] / 0.25).round() * 0.25
-    df['lon'] = (df['lon'] / 0.25).round() * 0.25
+    # snap to the master grid
+    df['lat'] = (df['lat'] / GRID_RES).round() * GRID_RES
+    df['lon'] = (df['lon'] / GRID_RES).round() * GRID_RES
 
     grid = df.groupby(['lat', 'lon']).agg(
         elevation=('elevation', 'mean'),
@@ -46,7 +49,7 @@ try:
         aspect=('aspect', 'mean')
     ).reset_index()
 
-    grid.to_csv('data/chamoli_terrain.csv', index=False)
+    grid.to_csv(out_path('terrain'), index=False)
     print(f"Saved {grid.shape[0]} grid cells")
     print(grid.head())
 
