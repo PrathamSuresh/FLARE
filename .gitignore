@@ -6,3 +6,7 @@ node_modules/
 build/
 dist/
 *.grd
+
+*.tif
+*.hgt
+data/raw/
