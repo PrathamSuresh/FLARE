@@ -59,12 +59,3 @@ Setup instructions live in each component's own README. Dataset provenance and c
 
 ---
 
-## Status
-
-Environment configured, API endpoints scaffolded, and the rainfall, soil moisture, terrain and flood-event datasets acquired for Chamoli. Sentinel-1 flood extent processing and ward GIS boundaries are the current critical path.
-
----
-
-## Team
-
-Six members: Data/GIS, ML, Backend/API, two Frontend, and Integration/Presentation. Workstreams coordinate through a shared API contract agreed before implementation.
