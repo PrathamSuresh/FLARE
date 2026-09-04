@@ -10,3 +10,4 @@ dist/
 *.tif
 *.hgt
 data/raw/
+data/raw/sentinel1/
