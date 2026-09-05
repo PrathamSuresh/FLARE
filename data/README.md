@@ -197,7 +197,7 @@ Note that 2013 Kedarnath predates Sentinel-1A (launched April 2014) and can neve
 
 ---
 
-## ward-level spatial flood labels — tested, not achievable
+## ward-level spatial flood labels — needs tweaks
 
 **Attempted source:** Sentinel-1 GRD change detection + village GIS boundaries
 **Script:** `ml/gee_change_detection.js` (Google Earth Engine, `COPERNICUS/S1_GRD`)
