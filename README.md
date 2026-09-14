@@ -1,4 +1,4 @@
-##Only data procurement done for now
+Only data procurement done for now
  # FLARE
 
 **Flood Level Assessment & Rapid Early-warning**
